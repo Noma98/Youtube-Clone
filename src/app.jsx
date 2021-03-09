@@ -6,7 +6,9 @@ import VideoDetail from './components/video_detail/video_detail';
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);//널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
+  const [loading, setLoading] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
 
   const selectVideo = (video) => {
     setSelectedVideo(video);
@@ -15,10 +17,12 @@ function App({ youtube }) {
 
   const search = query => {
     setSelectedVideo(null);
+    setLoading(true);
     youtube
       .search(query)
       .then(videos => {
         setVideos(videos);
+        setLoading(false);
       });
   };
 
@@ -37,14 +41,19 @@ function App({ youtube }) {
             <VideoDetail video={selectedVideo} />
           </div>
         )}
-        <div className={styles.list}>
-          <VideoList
-            videos={videos}
-            onVideoClick={selectVideo}
-            display={selectedVideo ? 'list' : 'grid'}
-          />
-        </div>
-
+        {loading === true ? (
+          <div className={styles.loadingScreen}>
+            <div className={styles.loadingSpinner}></div>
+          </div>)
+          : (
+            <div className={styles.list}>
+              <VideoList
+                videos={videos}
+                onVideoClick={selectVideo}
+                display={selectedVideo ? 'list' : 'grid'}
+              />
+            </div>
+          )}
       </section>
     </div>);
 }
