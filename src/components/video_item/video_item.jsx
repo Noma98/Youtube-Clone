@@ -10,8 +10,6 @@ const Video_item = ({ video: { snippet } }) =>
                 <span className={styles.channel}>{snippet.channelTitle}</span>
             </div>
         </div>
-
-
     </li>;
 
 
