@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import SearchHeader from './components/search_header/search_header';
 import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
@@ -15,22 +15,24 @@ function App({ youtube }) {
     //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
   }
 
-  const search = query => {
-    setSelectedVideo(null);
-    setLoading(true);
-    youtube
-      .search(query)
-      .then(videos => {
-        setVideos(videos);
-        setLoading(false);
-      });
-  };
+  const search = useCallback(
+    query => {
+      setSelectedVideo(null);
+      setLoading(true);
+      youtube
+        .search(query)
+        .then(videos => {
+          setVideos(videos);
+          setLoading(false);
+        });
+    }, [youtube]
+  );
 
   useEffect(() => {
     youtube
       .mostPopular()
       .then(videos => setVideos(videos));
-  }, []);
+  }, [youtube]);
 
   return (
     <div className={styles.app}>
