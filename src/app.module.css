@@ -26,7 +26,7 @@
   border-radius: 50%;
   border:5px solid rgb(179, 194, 201);
   border-top: 5px solid rgb(64, 72, 75);
-  animation: spin 500ms linear infinite;
+  animation: spin 1s linear infinite;
 }
 @keyframes spin{
   0% {transform: rotate(0deg);}

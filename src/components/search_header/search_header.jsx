@@ -16,7 +16,6 @@ const SearchHeader = memo(({ onSearch }) => {
     const onClick = () => {
         handleSearch();
     }
-    console.log('header!!!!!');
     return (
         <header className={styles.header}>
             <div className={styles.logo}>
