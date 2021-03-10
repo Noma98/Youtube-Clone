@@ -14,9 +14,10 @@ code {
 #root{
   display:flex;
   justify-content: center;
-  background-color: black;
-  height:100vh;
 }
 *{
   box-sizing:border-box;
+}
+body{
+  background-color: black;
 }
