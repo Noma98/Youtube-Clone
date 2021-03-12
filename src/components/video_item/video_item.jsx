@@ -1,27 +1,82 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import styles from './video_item.module.css';
-
-//memo를 쓰는 이유: props이 바뀌지 않는다면 re-rendering할 필요가 없기 때문
-
+import * as common from '../../common';
 //video 안에 있는 key인 snippet도 deconstructing이 된다
-const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display }) => {
+
+let loading = true;
+const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg }) => {
+
     const displayType = display === 'list' ? styles.list : styles.grid;
-
+    const [videoData, setVideoData] = useState({
+        videoId: video.id,
+        channelId: snippet.channelId,
+        description: '',
+        videoTitle: '',
+        date: '',
+        videoThumbnail: '',
+        viewCount: '',
+        like: '',
+        dislike: '',
+        comment: '',
+        tags: '',
+        channelTitle: '',
+        channelImg: '',
+        subscriber: '',
+    });
     //해당 이벤트가 발생하는 곳에서는 굳이 새로 함수를 만들어서 전달해 주지 않고 바로 onClick={()=>{함수(인자)}}로 작성해도 됨
+    useEffect(() => {
+        youtube.getAllData(videoData.videoId, videoData.channelId).then(result => {
+            const video = result[0];
+            const channel = result[1];
+            setVideoData({
+                ...videoData,
+                description: video.snippet.description,
+                videoTitle: video.snippet.title,
+                date: video.snippet.publishedAt,
+                videoThumbnail: video.snippet.thumbnails.medium.url,
+                viewCount: video.statistics.viewCount,
+                like: video.statistics.likeCount,
+                dislike: video.statistics.dislikeCount,
+                comment: video.statistics.commentCount,
+                tags: video.snippet.tags,
+                channelTitle: channel.snippet.title,
+                channelImg: channel.snippet.thumbnails.default.url,
+                subscriber: channel.statistics.subscriberCount
+            });
+        }).then(loading = false);
+
+    }, [video]);
+    console.log('render!!!!');
     return (
-        <li className={`${styles.container} ${displayType}`} onClick={() => onVideoClick(video)}>
-            <div className={styles.video}>
-                <img className={styles.thumbnail} src={snippet.thumbnails.medium.url} alt="video thumbnail" />
-                <div className={styles.metadata}>
-                    <h3 className={styles.title}>{snippet.title}</h3>
-                    <span className={styles.channel}>{snippet.channelTitle}</span>
-                </div>
-            </div>
-        </li>
+        <>
+            {loading === true ? (
+                <div></div>)
+                : (
+                    <li className={`${styles.video} ${displayType}`} onClick={() => onVideoClick(videoData)}>
+                        <img src={videoData.videoThumbnail} className={styles.thumbnail}></img>
+                        <div className={styles.metadata}>
+                            {channelImg && (<img src={videoData.channelImg} className={styles.channelImg} />)}
+                            <div className={styles.infoBox}>
+                                <p className={styles.videoTitle}>{videoData.videoTitle}</p>
+                                <p className={styles.channelName}>{videoData.channelTitle}</p>
+                                <p className={styles.viewCountAndDate}>{`${common.countConverter(videoData.viewCount)}회 • `}
+                                    <span className={styles.date}>{common.agoConverter(videoData.date)}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                )}
+        </>
     );
+
+
 });
-
-
-
-
 export default VideoItem;
+
+{/* <li className={`${styles.video} ${displayType}`} onClick={() => onVideoClick(videoData)}>
+                        <img className={styles.thumbnail} src={videoData.videoThumbnail} alt="video thumbnail" />
+                        <div className={styles.metadata}>
+                            <h3 className={styles.title}>{videoData.videoTitle}</h3>
+                            <span className={styles.channel}>{videoData.channelTitle}</span>
+                        </div>
+                    </li> */}

@@ -1,28 +1,86 @@
-.header{
+/* .header{
+    padding:1em 2em;
+    height: 3.2rem;
     display: flex;
-    height: 4rem;
-    padding: 0.5rem 1rem;
-    background-color: black;
-    color: white;
+    justify-content: space-between;
+    align-items: center;
+    background-color:var(--color-dark-gray);
+    position: fixed;
+    z-index: 1;
+    top:0px;
+    width: 100%;
 }
 .logo{
     display: flex;
     align-items: center;
     margin-right: 1em;
 }
+.logo h1{
+    font-size: 1.2rem;
+    margin: 0;
+}
 .logo img{
     margin-right: 0.3em;
-}
-.input{
-    flex-basis: 100%;
-    font-size: 1.2rem;
-    outline: 0;
-}
-.btn{
-    background-color: darkgray;
+    height: 2rem;
+} */
+.header{
+    padding:4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:var(--color-dark-gray);
+    position: fixed;
+    z-index: 1;
+    top:0px;
+    width: 100%;
 }
 
-.btn img{
-    padding: 0.5em 0.2em;
-    height: 100%;
+.start{
+    display: flex;
+    align-items: center;
+    color:white;
+    margin-right: 40px;
+}
+.menuBtn{
+    margin: 12px;
+    background-color:var(--color-dark-gray);
+}
+.menuBtn i{
+    font-size: 18px;
+    color: white;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    color:white;
+}
+.logoImage{
+    width:1.8rem;
+    padding:0 4px;
+}
+.logoTitle{
+    font-size: 1rem;
+}
+.center{
+    display: flex;
+    width: 60%;
+}
+.end{
+    display: flex;
+    margin: 0 20px;
+}
+.btn i{
+    font-size: 18px;
+    color: white;
+}
+.btn{
+    padding:8px;
+    margin-left: 20px;
+    background-color: var(--color-dark-gray);
+}
+
+@media screen and (max-width:650px){
+    .btn{
+        margin-left: 8px;
+    }
 }

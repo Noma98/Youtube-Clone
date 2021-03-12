@@ -1,0 +1,31 @@
+
+.search{
+    display: flex;
+    align-items: center;
+    width:90%;
+}
+.searchInput{
+    display: inline-block;
+    border:0.5px solid var(--color-gray);
+    background-color: var(--color-black);
+    height:30px;
+    width:100%;
+    margin-right: 0.5px;
+    font-size: 16px;
+    color: white;
+    padding-left: 6px;
+}
+.searchInput[type="text"]:focus{
+    border-color: var(--color-blue);
+    outline: 0;
+}
+.searchIconBtn{
+    background-color: var(--color-gray);
+    height: 30px;
+    width: 65px;
+    margin-left:0;
+}
+.searchIcon{
+    width:16px;
+    height:16px;
+}

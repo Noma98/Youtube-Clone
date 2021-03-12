@@ -1,7 +1,19 @@
 .videos {
     display: flex;
-    flex-wrap: wrap;
+    flex:1 1 37%;  
     list-style: none;
     padding-left: 0;
     margin:0;
   }
+.grid{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+.list{
+    flex-direction: column;
+  }
+@media screen and (max-width:48rem){
+    .videos.list{
+      width: 100%;
+    }
+}

@@ -1,16 +1,39 @@
+:root{
+  /*  color */
+  --color-black:#181818;
+  --color-dark-gray: #202020;
+  --color-gray:#313131;
+  --color-middle-gray:#909090;
+  --color-light-gray:#AAAAAA;
+  --color-blue:#4195f0;
+  --color-red:#cc0001;
+}
+*{
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+a{
+  text-decoration: none;
+}
+button{
+  border:none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+body{
+  background: var(--color-black);
+}
 .app{
-  max-width: 60rem;
   color: white;
+  width: 100%;
 }
 .content{
   display:flex;
+  margin-top: 2rem;
+  padding: 0.8rem 1rem;
 }
-.detail{
-  flex: 1 1 70%;
-}
-.list{
-  flex:1 1 30%;
-}
+
 .loadingScreen{
   width: 100%;
   height:90vh;
@@ -35,5 +58,11 @@
 @media screen and (max-width:48rem){
   .content{
     flex-direction:column;
+    padding: 0.8rem 1rem;
+  }
+}
+@media screen and (max-width:37.5rem){
+  .content{
+    padding: 0.8rem 0rem;
   }
 }

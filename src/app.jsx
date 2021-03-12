@@ -4,57 +4,80 @@ import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
 import VideoDetail from './components/video_detail/video_detail';
 
+let loading = true;
+let grid = false;
+let channelImg = true;
+
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
 
   const selectVideo = (video) => {
+    grid = false;
+    channelImg = false;
     setSelectedVideo(video);
     //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
   }
 
   const search = useCallback(
     query => {
+      channelImg = true;
+      grid = false;
       setSelectedVideo(null);
-      setLoading(true);
       youtube
-        .search(query)
+        .getSearchResult(query)
         .then(videos => {
+          loading = false;
           setVideos(videos);
-          setLoading(false);
         });
     }, [youtube]
   );
-
+  const clickLogo = useCallback(
+    () => {
+      setSelectedVideo(null);
+      channelImg = true;
+      grid = true;
+      loading = true;
+      youtube
+        .getMostPopular()
+        .then(videos => {
+          loading = false;
+          setVideos(videos);
+        });
+    }, [youtube]);
   useEffect(() => {
+    channelImg = true;
+    grid = true;
+    loading = true;
     youtube
-      .mostPopular()
-      .then(videos => setVideos(videos));
+      .getMostPopular()
+      .then(videos => {
+        loading = false;
+        setVideos(videos);
+      });
   }, [youtube]);
-
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search} />
+      <SearchHeader onSearch={search} onLogoClick={clickLogo} />
       <section className={styles.content}>
         {selectedVideo && (
-          <div className={styles.detail}>
-            <VideoDetail video={selectedVideo} />
-          </div>
+          <VideoDetail video={selectedVideo} />
         )}
         {loading === true ? (
           <div className={styles.loadingScreen}>
             <div className={styles.loadingSpinner}></div>
           </div>)
           : (
-            <div className={styles.list}>
-              <VideoList
-                videos={videos}
-                onVideoClick={selectVideo}
-                display={selectedVideo ? 'list' : 'grid'}
-              />
-            </div>
+            // <div className={styles.list}>
+            <VideoList
+              channelImg={channelImg}
+              youtube={youtube}
+              videos={videos}
+              onVideoClick={selectVideo}
+              display={grid ? 'grid' : 'list'}
+            />
+            //</div> 
           )}
       </section>
     </div>);

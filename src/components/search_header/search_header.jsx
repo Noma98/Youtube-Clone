@@ -1,40 +1,31 @@
 import styles from './search_header.module.css';
-
 import React, { memo, useRef } from 'react';
+import SearchForm from './search_form/search_form';
 
-const SearchHeader = memo(({ onSearch }) => {
-    const inputRef = useRef();
-    const handleSearch = () => {
-        const value = inputRef.current.value;
-        onSearch(value);
-    }
-    const onKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            handleSearch();
-        }
-    };
-    const onClick = () => {
-        handleSearch();
-    }
+const SearchHeader = memo(({ onSearch, onLogoClick }) => {
+
     return (
-        <header className={styles.header}>
-            <div className={styles.logo}>
-                <img className={styles.img} src="/images/logo.png" alt="logo" />
-                <h1 className={styles.title}>Youtube</h1>
+        <div className={styles.header}>
+            <div className={styles.start}>
+                <button className={styles.menuBtn}>
+                    <i className="fas fa-bars"></i>
+                </button>
+                <a className={styles.logo} href='#' onClick={onLogoClick}>
+                    <img className={styles.logoImage} src="/images/logo.png" alt="logo" />
+                    <h4 className={styles.logoTitle}>Youtube</h4>
+                </a>
             </div>
-            <input
-                className={styles.input}
-                ref={inputRef}
-                type="search"
-                placeholder='search..'
-                onKeyUp={onKeyPress}
-            />
-            <button className={styles.btn} onClick={onClick}>
-                <img src="/images/search.png" alt="search" />
-            </button>
-        </header>
+            <div className={styles.center}>
+                <SearchForm onSearch={onSearch} />
+                <button className={styles.btn}><i className="fas fa-microphone"></i></button>
+            </div>
+            <div className={styles.end}>
+                <button className={styles.btn}><i className="fas fa-plus-square"></i></button>
+                <button className={styles.btn}><i className="fas fa-th"></i></button>
+                <button className={styles.btn}><i className="fas fa-bell"></i></button>
+            </div>
+        </div>
     );
 });
-
 
 export default SearchHeader;
