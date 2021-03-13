@@ -45,7 +45,17 @@ class Youtube {
             params: {
                 part: 'snippet, statistics',
                 id: videoId,
-                fields: 'items(snippet(publishedAt,title,description,thumbnails.medium.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
+                fields: 'items(id,snippet(publishedAt,title,description,thumbnails.medium.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
+            }
+        });
+        return response.data.items[0];
+    }
+    async fetchChannelData(channelId) {
+        const response = await this.youtube.get('channels', {
+            params: {
+                part: 'snippet,statistics',
+                id: channelId,
+                fields: 'items(id,snippet(title,thumbnails.default.url),statistics(subscriberCount))',
             }
         });
         return response.data.items[0];
@@ -53,15 +63,6 @@ class Youtube {
     getAllData(videoId, channelId) {
         return Promise.all([this.fetchVideoData(videoId), this.fetchChannelData(channelId)]);
     }
-    async fetchChannelData(channelId) {
-        const response = await this.youtube.get('channels', {
-            params: {
-                part: 'snippet,statistics',
-                id: channelId,
-                fields: 'items(snippet(title,thumbnails.default.url),statistics(subscriberCount))',
-            }
-        });
-        return response.data.items[0];
-    }
+
 }
 export default Youtube;

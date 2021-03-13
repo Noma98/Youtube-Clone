@@ -3,11 +3,12 @@ import styles from './video_item.module.css';
 import * as common from '../../common';
 //video 안에 있는 key인 snippet도 deconstructing이 된다
 
-let loading = true;
+// let loading = true;
 const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg, description }) => {
+    const [loading, setLoading] = useState(true);
     const [videoData, setVideoData] = useState({
-        videoId: video.id,
-        channelId: snippet.channelId,
+        videoId: '',
+        channelId: '',
         description: '',
         videoTitle: '',
         date: '',
@@ -23,11 +24,13 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
     });
     //해당 이벤트가 발생하는 곳에서는 굳이 새로 함수를 만들어서 전달해 주지 않고 바로 onClick={()=>{함수(인자)}}로 작성해도 됨
     useEffect(() => {
-        youtube.getAllData(videoData.videoId, videoData.channelId).then(result => {
+        console.log(`video: ${video.id}, ${video.snippet.channelId}`);
+        youtube.getAllData(video.id, snippet.channelId).then(result => {
             const video = result[0];
             const channel = result[1];
             setVideoData({
-                ...videoData,
+                videoId: video.id,
+                channelId: channel.id,
                 description: video.snippet.description,
                 videoTitle: video.snippet.title,
                 date: video.snippet.publishedAt,
@@ -41,7 +44,8 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
                 channelImg: channel.snippet.thumbnails.default.url,
                 subscriber: channel.statistics.subscriberCount
             });
-        }).then(loading = false);
+            setLoading(false);
+        });
 
     }, [video]);//여기 warning에서는 videoData나 youtube 넣으라는데 videoData 넣으면 무한루프 생김...
 

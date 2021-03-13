@@ -4,7 +4,7 @@ import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
 import VideoDetail from './components/video_detail/video_detail';
 
-let loading = true;
+// let loading = true;
 let grid = true;
 let channelImg = true;
 let search = false;
@@ -12,22 +12,30 @@ let selectedVideo = null;
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
   //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
 
   const selectVideo = useCallback(
     (video) => {
+      setLoading(true);
       search = false;
       grid = false;
       channelImg = false;
+      // loading = true;
       selectedVideo = video;
+
       //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
       youtube //
         .getRcmData(video.videoId)
-        .then(videos => setVideos(videos)).catch(console.log);
+        .then(videos => {
+          setVideos(videos);
+          setLoading(false);
+        });
     }, [youtube]);
 
   const handleSearch = useCallback(
     query => {
+      setLoading(true);
       search = false;
       channelImg = true;
       grid = false;
@@ -35,30 +43,34 @@ function App({ youtube }) {
       youtube
         .getSearchResult(query)
         .then(videos => {
-          loading = false;
           setVideos(videos);
+          setLoading(false);
         });
     }, [youtube]
   );
   const clickLogo = useCallback(
     () => {
+      setLoading(true);
       selectedVideo = null;
       channelImg = true;
       grid = true;
-      loading = true;
+      // loading = true;
       youtube
         .getMostPopular()
         .then(videos => {
-          loading = false;
+          // loading = false;
           setVideos(videos);
+          setLoading(false);
         });
     }, [youtube]);
   useEffect(() => {
+    setLoading(true);
     youtube
       .getMostPopular()
       .then(videos => {
-        loading = false;
+        // loading = false;
         setVideos(videos);
+        setLoading(false);
       });
   }, [youtube]);
 
