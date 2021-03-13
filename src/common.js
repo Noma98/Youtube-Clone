@@ -18,7 +18,7 @@ export function countConverter(count) {
 
 export function agoConverter(dateString) {
     const publishedDate = new Date(dateString);
-    const currentDate = new Date;
+    const currentDate = new Date();
     const seconds = (currentDate.getTime() - publishedDate.getTime()) / 1000;
     let result;
     if (seconds < 60) {

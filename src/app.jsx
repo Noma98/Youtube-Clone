@@ -7,6 +7,7 @@ import VideoDetail from './components/video_detail/video_detail';
 let loading = true;
 let grid = false;
 let channelImg = true;
+let search = false;
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
@@ -14,14 +15,21 @@ function App({ youtube }) {
   //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
 
   const selectVideo = (video) => {
+    search = false;
     grid = false;
     channelImg = false;
     setSelectedVideo(video);
     //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
+    youtube
+      .getRcmData(video.videoId)
+      .then(videos => {
+        setVideos(videos);
+      });
   }
 
-  const search = useCallback(
+  const handleSearch = useCallback(
     query => {
+      search = false;
       channelImg = true;
       grid = false;
       setSelectedVideo(null);
@@ -57,10 +65,11 @@ function App({ youtube }) {
         setVideos(videos);
       });
   }, [youtube]);
+
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search} onLogoClick={clickLogo} />
-      <section className={styles.content}>
+      <SearchHeader onSearch={handleSearch} onLogoClick={clickLogo} />
+      <section className={`${grid ? styles.grid : styles.list} ${styles.content}`}>
         {selectedVideo && (
           <VideoDetail video={selectedVideo} />
         )}
@@ -76,6 +85,7 @@ function App({ youtube }) {
               videos={videos}
               onVideoClick={selectVideo}
               display={grid ? 'grid' : 'list'}
+              description={search}
             />
             //</div> 
           )}

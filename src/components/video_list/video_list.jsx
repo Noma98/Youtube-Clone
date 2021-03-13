@@ -1,18 +1,18 @@
 import React from 'react';
-import Video_item from '../video_item/video_item';
+import VideoItem from '../video_item/video_item';
 import styles from './video_list.module.css';
 
-const VideoList = ({ channelImg, youtube, videos, onVideoClick, display }) => {
-    const displayType = display === 'list' ? styles.list : styles.grid;
+const VideoList = ({ description, channelImg, youtube, videos, onVideoClick, display }) => {
     return (
-        <ul className={`${styles.videos} ${displayType}`}>
-            {videos.map(video => <Video_item
+        <ul className={`${styles.videos} ${display === 'list' ? styles.list : styles.grid}`}>
+            {videos.map(video => <VideoItem
                 key={video.id}
                 video={video}
                 onVideoClick={onVideoClick}
                 display={display}
                 youtube={youtube}
                 channelImg={channelImg}
+                description={description}
             />)}
         </ul>
 

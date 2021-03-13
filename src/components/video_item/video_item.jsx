@@ -4,9 +4,7 @@ import * as common from '../../common';
 //video 안에 있는 key인 snippet도 deconstructing이 된다
 
 let loading = true;
-const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg }) => {
-
-    const displayType = display === 'list' ? styles.list : styles.grid;
+const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg, description }) => {
     const [videoData, setVideoData] = useState({
         videoId: video.id,
         channelId: snippet.channelId,
@@ -45,23 +43,25 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
             });
         }).then(loading = false);
 
-    }, [video]);
+    }, [video]);//여기 warning에서는 videoData나 youtube 넣으라는데 videoData 넣으면 무한루프 생김...
+
     console.log('render!!!!');
     return (
         <>
             {loading === true ? (
                 <div></div>)
                 : (
-                    <li className={`${styles.video} ${displayType}`} onClick={() => onVideoClick(videoData)}>
-                        <img src={videoData.videoThumbnail} className={styles.thumbnail}></img>
+                    <li className={`${styles.video} ${display === 'list' ? styles.list : styles.grid}`} onClick={() => onVideoClick(videoData)}>
+                        <img src={videoData.videoThumbnail} className={styles.thumbnail} alt='thumbnail'></img>
                         <div className={styles.metadata}>
-                            {channelImg && (<img src={videoData.channelImg} className={styles.channelImg} />)}
+                            {channelImg && (<img src={videoData.channelImg} className={styles.channelImg} alt='channel' />)}
                             <div className={styles.infoBox}>
                                 <p className={styles.videoTitle}>{videoData.videoTitle}</p>
                                 <p className={styles.channelName}>{videoData.channelTitle}</p>
                                 <p className={styles.viewCountAndDate}>{`${common.countConverter(videoData.viewCount)}회 • `}
                                     <span className={styles.date}>{common.agoConverter(videoData.date)}</span>
                                 </p>
+                                {description && <div className={styles.description}>{videoData.description}</div>}
                             </div>
                         </div>
                     </li>
@@ -72,11 +72,3 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
 
 });
 export default VideoItem;
-
-{/* <li className={`${styles.video} ${displayType}`} onClick={() => onVideoClick(videoData)}>
-                        <img className={styles.thumbnail} src={videoData.videoThumbnail} alt="video thumbnail" />
-                        <div className={styles.metadata}>
-                            <h3 className={styles.title}>{videoData.videoTitle}</h3>
-                            <span className={styles.channel}>{videoData.channelTitle}</span>
-                        </div>
-                    </li> */}

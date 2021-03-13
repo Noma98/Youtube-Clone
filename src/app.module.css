@@ -31,7 +31,12 @@ body{
 .content{
   display:flex;
   margin-top: 2rem;
-  padding: 0.8rem 1rem;
+}
+.grid{
+   padding: 0.8rem 1rem;
+}
+.list{
+  padding:0.8rem 3rem;
 }
 
 .loadingScreen{
@@ -62,7 +67,7 @@ body{
   }
 }
 @media screen and (max-width:37.5rem){
-  .content{
+  .grid{
     padding: 0.8rem 0rem;
   }
 }

@@ -29,12 +29,12 @@ class Youtube {
     }
 
     async getRcmData(videoId) {
-        const response = await this.youtube.get('', {
+        const response = await this.youtube.get('search', {
             params: {
                 part: 'snippet',
                 type: 'video',
-                relatedVideoId: videoId,
-                maxResults: 6,
+                relatedToVideoId: videoId,
+                maxResults: 2,
                 fields: 'items(id.videoId,snippet(channelId))',
             },
         });

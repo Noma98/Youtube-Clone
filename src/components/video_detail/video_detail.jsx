@@ -7,13 +7,14 @@ const VideoDetail = ({ video }) => (
         <div className={styles.iframeBox}>
             <iframe
                 src={`https://www.youtube.com/embed/${video.videoId}`}
+                title='youtube video'
                 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 frameBorder='0'></iframe>
         </div>
         <div className={styles.container}>
             <div className={styles.videoContainer}>
-                <p className={styles.tags}>{common.tagMaker(video.tags)}</p>
+                {video.tags && <p className={styles.tags}>{common.tagMaker(video.tags)}</p>}
                 <h2 className={styles.title}>{video.videoTitle}</h2>
                 <div className={styles.viewInfo}>
                     <p className={styles.viewCountAndDate}>{
@@ -55,18 +56,3 @@ const VideoDetail = ({ video }) => (
 
 
 export default VideoDetail;
-
-{/* <section className={styles.detail}>
-        <iframe
-            type="text/html"
-            title="youtube video player"
-            width="100%"
-            height="500px"
-            src={`https://www.youtube.com/embed/${video.videoId}`}
-            frameBorder="0"
-            allowFullScreen
-        ></iframe>
-        <h2>{video.videoTitle}</h2>
-        <h3>{video.channelTitle}</h3>
-        <pre className={styles.description}>{video.description}</pre>
-    </section> */}

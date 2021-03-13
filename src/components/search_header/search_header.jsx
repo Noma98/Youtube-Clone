@@ -1,5 +1,5 @@
 import styles from './search_header.module.css';
-import React, { memo, useRef } from 'react';
+import React, { memo } from 'react';
 import SearchForm from './search_form/search_form';
 
 const SearchHeader = memo(({ onSearch, onLogoClick }) => {
