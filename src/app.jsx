@@ -5,34 +5,33 @@ import styles from './app.module.css';
 import VideoDetail from './components/video_detail/video_detail';
 
 let loading = true;
-let grid = false;
+let grid = true;
 let channelImg = true;
 let search = false;
+let selectedVideo = null;
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
-  const [selectedVideo, setSelectedVideo] = useState(null);
   //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
 
-  const selectVideo = (video) => {
-    search = false;
-    grid = false;
-    channelImg = false;
-    setSelectedVideo(video);
-    //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
-    youtube
-      .getRcmData(video.videoId)
-      .then(videos => {
-        setVideos(videos);
-      });
-  }
+  const selectVideo = useCallback(
+    (video) => {
+      search = false;
+      grid = false;
+      channelImg = false;
+      selectedVideo = video;
+      //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
+      youtube //
+        .getRcmData(video.videoId)
+        .then(videos => setVideos(videos)).catch(console.log);
+    }, [youtube]);
 
   const handleSearch = useCallback(
     query => {
       search = false;
       channelImg = true;
       grid = false;
-      setSelectedVideo(null);
+      selectedVideo = null;
       youtube
         .getSearchResult(query)
         .then(videos => {
@@ -43,7 +42,7 @@ function App({ youtube }) {
   );
   const clickLogo = useCallback(
     () => {
-      setSelectedVideo(null);
+      selectedVideo = null;
       channelImg = true;
       grid = true;
       loading = true;
@@ -55,9 +54,6 @@ function App({ youtube }) {
         });
     }, [youtube]);
   useEffect(() => {
-    channelImg = true;
-    grid = true;
-    loading = true;
     youtube
       .getMostPopular()
       .then(videos => {
@@ -66,6 +62,7 @@ function App({ youtube }) {
       });
   }, [youtube]);
 
+  console.log('app render🌟')
   return (
     <div className={styles.app}>
       <SearchHeader onSearch={handleSearch} onLogoClick={clickLogo} />
@@ -78,7 +75,6 @@ function App({ youtube }) {
             <div className={styles.loadingSpinner}></div>
           </div>)
           : (
-            // <div className={styles.list}>
             <VideoList
               channelImg={channelImg}
               youtube={youtube}
@@ -87,7 +83,6 @@ function App({ youtube }) {
               display={grid ? 'grid' : 'list'}
               description={search}
             />
-            //</div> 
           )}
       </section>
     </div>);

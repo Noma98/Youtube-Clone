@@ -45,7 +45,7 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
 
     }, [video]);//여기 warning에서는 videoData나 youtube 넣으라는데 videoData 넣으면 무한루프 생김...
 
-    console.log('render!!!!');
+    console.log('item render!!!!');
     return (
         <>
             {loading === true ? (
