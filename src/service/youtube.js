@@ -8,7 +8,7 @@ class Youtube {
             params: {
                 part: 'snippet',
                 chart: 'mostPopular',
-                maxResults: 4,
+                maxResults: 28,
                 fields: 'items(id,snippet(channelId))',
             },
         });
@@ -21,7 +21,7 @@ class Youtube {
                 part: 'snippet',
                 type: 'video',
                 q: query,
-                maxResults: 2,
+                maxResults: 10,
                 fields: 'items(id(videoId),snippet(channelId))',
             },
         });
@@ -34,7 +34,7 @@ class Youtube {
                 part: 'snippet',
                 type: 'video',
                 relatedToVideoId: videoId,
-                maxResults: 2,
+                maxResults: 6,
                 fields: 'items(id.videoId,snippet(channelId))',
             },
         });

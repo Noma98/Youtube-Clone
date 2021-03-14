@@ -83,27 +83,26 @@ function App({ youtube }) {
       <SearchHeader onSearch={handleSearch} onLogoClick={clickLogo} />
       <section className={styles.sidebarAndContent}>
         {selectedVideo === null ? <Sidebar onHomeClick={clickLogo} /> : <></>}
-        <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
-          {selectedVideo && (
-            <VideoDetail video={selectedVideo} />
+        {loading ? (
+          <div className={styles.loadingScreen}>
+            <div className={styles.loadingSpinner}></div>
+          </div>) : (
+            <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
+              {selectedVideo && (
+                <VideoDetail video={selectedVideo} />
+              )}
+
+              <VideoList
+                channelImg={channelImg}
+                youtube={youtube}
+                videos={videos}
+                onVideoClick={selectVideo}
+                display={grid ? 'grid' : 'list'}
+                search={search}
+              />
+            </section>
           )}
-          {loading === true ? (
-            <div className={styles.loadingScreen}>
-              <div className={styles.loadingSpinner}></div>
-            </div>)
-            : (
-              <>
-                <VideoList
-                  channelImg={channelImg}
-                  youtube={youtube}
-                  videos={videos}
-                  onVideoClick={selectVideo}
-                  display={grid ? 'grid' : 'list'}
-                  search={search}
-                />
-              </>
-            )}
-        </section>
+
       </section>
 
     </div>);
