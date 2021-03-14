@@ -1,0 +1,27 @@
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    padding:3rem 0;
+    height:100vh;
+    background-color:var(--color-dark-gray);
+}
+.btn{
+padding:2em;
+font-size: 0.5rem;
+background-color: transparent;
+color:var(--color-light-gray);
+}
+.btn:hover{
+  background-color: var(--color-gray);
+}
+.btn i{
+    display: block;
+    margin: auto;
+    font-size: 1rem;
+    padding-bottom: 0.3em;
+}
+@media screen and (max-width:780px){
+    .sidebar{
+      display: none;
+    }
+  }

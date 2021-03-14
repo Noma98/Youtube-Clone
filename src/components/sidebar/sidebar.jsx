@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './sidebar.module.css'
 
-const Sidebar = (props) => {
+const Sidebar = ({ onHomeClick }) => {
     return (
-        <div className={styles.sideBar}>
-            <button className={styles.btn}>
+        <div className={styles.sidebar}>
+            <button className={styles.btn} onClick={onHomeClick}>
                 <i className="fas fa-home"></i>
                 홈
             </button>

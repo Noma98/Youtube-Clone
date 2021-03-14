@@ -3,7 +3,6 @@
     flex:1 1 37%;  
     list-style: none;
     padding-left: 0;
-    margin:0;
   }
 .grid{
     flex-wrap: wrap;
@@ -11,6 +10,7 @@
   }
 .list{
     flex-direction: column;
+    padding-right: 1.5em;
   }
 @media screen and (max-width:48rem){
     .videos.list{

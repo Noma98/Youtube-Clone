@@ -3,6 +3,7 @@ import SearchHeader from './components/search_header/search_header';
 import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
 import VideoDetail from './components/video_detail/video_detail';
+import Sidebar from './components/sidebar/sidebar';
 
 // let loading = true;
 let grid = true;
@@ -36,7 +37,7 @@ function App({ youtube }) {
   const handleSearch = useCallback(
     query => {
       setLoading(true);
-      search = false;
+      search = true;
       channelImg = true;
       grid = false;
       selectedVideo = null;
@@ -48,12 +49,14 @@ function App({ youtube }) {
         });
     }, [youtube]
   );
+
   const clickLogo = useCallback(
     () => {
       setLoading(true);
       selectedVideo = null;
       channelImg = true;
       grid = true;
+      search = false;
       // loading = true;
       youtube
         .getMostPopular()
@@ -78,25 +81,29 @@ function App({ youtube }) {
   return (
     <div className={styles.app}>
       <SearchHeader onSearch={handleSearch} onLogoClick={clickLogo} />
-      <section className={`${grid ? styles.grid : styles.list} ${styles.content}`}>
-        {selectedVideo && (
-          <VideoDetail video={selectedVideo} />
-        )}
-        {loading === true ? (
-          <div className={styles.loadingScreen}>
-            <div className={styles.loadingSpinner}></div>
-          </div>)
-          : (
-            <VideoList
-              channelImg={channelImg}
-              youtube={youtube}
-              videos={videos}
-              onVideoClick={selectVideo}
-              display={grid ? 'grid' : 'list'}
-              description={search}
-            />
+      <section className={styles.sidebarAndContent}>
+        {selectedVideo === null ? <Sidebar onHomeClick={clickLogo} /> : <></>}
+        <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
+          {selectedVideo && (
+            <VideoDetail video={selectedVideo} />
           )}
+          {loading === true ? (
+            <div className={styles.loadingScreen}>
+              <div className={styles.loadingSpinner}></div>
+            </div>)
+            : (
+              <VideoList
+                channelImg={channelImg}
+                youtube={youtube}
+                videos={videos}
+                onVideoClick={selectVideo}
+                display={grid ? 'grid' : 'list'}
+                description={search}
+              />
+            )}
+        </section>
       </section>
+
     </div>);
 }
 

@@ -1,3 +1,6 @@
+html{
+  font-size: 20px;
+}
 :root{
   /*  color */
   --color-black:#181818;
@@ -28,15 +31,19 @@ body{
   color: white;
   width: 100%;
 }
+.sidebarAndContent{
+  display: flex;
+  align-items: flex-start;
+}
 .content{
   display:flex;
-  margin-top: 2rem;
+  margin-top: 2.7em;
 }
 .grid{
    padding: 0.8rem 1rem;
 }
 .list{
-  padding:0.8rem 3rem;
+  padding:1.3em 0 0 1.3em;
 }
 
 .loadingScreen{
@@ -61,12 +68,24 @@ body{
   100%{transform: rotate(360deg);}
 }
 @media screen and (max-width:48rem){
+  html{
+    font-size: 18px;
+  }
   .content{
     flex-direction:column;
-    padding: 0.8rem 1rem;
+    margin-top: 3em;
+  }
+  .list{
+    padding: 1.5em 0 1.5em 1.5em;
+  }
+  .grid{
+    padding: 1.5em;
   }
 }
 @media screen and (max-width:37.5rem){
+  html{
+    font-size: 16px;
+  }
   .grid{
     padding: 0.8rem 0rem;
   }

@@ -62,7 +62,7 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
                             <div className={styles.infoBox}>
                                 <p className={styles.videoTitle}>{videoData.videoTitle}</p>
                                 <p className={styles.channelName}>{videoData.channelTitle}</p>
-                                <p className={styles.viewCountAndDate}>{`${common.countConverter(videoData.viewCount)}회 • `}
+                                <p className={styles.viewCountAndDate}>{`조회수 ${common.countConverter(videoData.viewCount)}회 • `}
                                     <span className={styles.date}>{common.agoConverter(videoData.date)}</span>
                                 </p>
                                 {description && <div className={styles.description}>{videoData.description}</div>}

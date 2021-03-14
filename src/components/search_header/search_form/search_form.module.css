@@ -8,12 +8,12 @@
     display: inline-block;
     border:0.5px solid var(--color-gray);
     background-color: var(--color-black);
-    height:30px;
+    height:1.7rem;
     width:100%;
     margin-right: 0.5px;
-    font-size: 16px;
+    font-size: 1rem;
     color: white;
-    padding-left: 6px;
+    padding-left: 0.5em;
 }
 .searchInput[type="text"]:focus{
     border-color: var(--color-blue);
@@ -21,11 +21,12 @@
 }
 .searchIconBtn{
     background-color: var(--color-gray);
-    height: 30px;
-    width: 65px;
+    height: 1.7rem;
+    width: 4rem;
     margin-left:0;
 }
 .searchIcon{
-    width:16px;
-    height:16px;
+    width:0.8rem;
+    height:0.8rem;
+    color: var(--color-middle-gray);
 }
