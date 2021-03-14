@@ -45,7 +45,7 @@ class Youtube {
             params: {
                 part: 'snippet, statistics',
                 id: videoId,
-                fields: 'items(id,snippet(publishedAt,title,description,thumbnails.medium.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
+                fields: 'items(id,snippet(publishedAt,title,description,thumbnails.maxres.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
             }
         });
         return response.data.items[0];

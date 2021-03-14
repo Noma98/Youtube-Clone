@@ -1,3 +1,15 @@
+.header{
+    padding:0.1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:var(--color-dark-gray);
+    position: fixed;
+    z-index: 1;
+    top:0;
+    width: 100%;
+}
+
 .search{
     display: flex;
     align-items: center;
@@ -28,4 +40,11 @@
     width:0.8rem;
     height:0.8rem;
     color: var(--color-middle-gray);
+}
+.btn{
+    padding:0.6em;
+    margin: 0 1em;
+    background-color: var(--color-dark-gray);
+    font-size: 1.05rem;
+    color: white;
 }
