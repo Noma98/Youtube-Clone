@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './video_detail.module.css';
 import * as common from '../../common';
 
 const VideoDetail = ({ video }) => {
     console.log('datail renderrrr!!');
+    const [open, setOpen] = useState(false);
     return (
         <div className={styles.playVideoBox}>
             <div className={styles.iframeBox}>
@@ -44,10 +45,13 @@ const VideoDetail = ({ video }) => {
                         <button className={styles.subscribe}>구독</button>
 
                     </div>
-                    <pre className={styles.notMore}>
-                        {video.description}
-                    </pre>
-                    <button className={styles.moreBtn}>더보기</button>
+                    <div className={styles.descriptionBox}>
+                        <pre className={`${styles.description} ${open ? styles.open : styles.close}`}>
+                            {video.description}
+                        </pre>
+                        <button className={styles.moreBtn} onClick={() => setOpen(!open)}>{open ? '간략히' : '더보기'}</button>
+                    </div>
+
                     <div className={styles.line}></div>
                     <span className={styles.comments1}>댓글 {common.numberWithCommas(video.comment)}개</span>
                 </div>
