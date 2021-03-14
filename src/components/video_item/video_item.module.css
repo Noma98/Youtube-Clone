@@ -1,7 +1,8 @@
-  .video{
+.video{
     padding-bottom:0.7em;
     cursor: pointer;
 }
+/* grid일 때 */
 .grid{
   flex:1 1 14rem; 
   max-width: 325px;
@@ -18,6 +19,8 @@
   display: flex;
   font-size: 14px;
 }
+
+/* list일 때 */
 .list{
   display: flex;
   width: 100%;
@@ -30,15 +33,35 @@
   width:70%;
   margin-left: 0.5em;
 }
+/* search일 때 */
+.list.search .thumbnail{
+  width: 18rem;
+  height:10rem;
+}
+.list.search .metadata{
+  flex: 1 1 100%;
+}
+.searchChannelImg{
+  margin: 0.5em 0.5em 0.5em 0;
+  width:25px;
+  height:25px;
+  border-radius: 50%;
+}
 .channelImg{
-    width:36px;
+  width:36px;
     height:36px;
-    background-color: white;
     border-radius: 50%;
-    margin: 0.8em 0.8em 0 0;
+  margin: 0.8em 0.8em 0 0;
+}
+.channelBox{
+  display: flex;
+  align-items: center;
 }
 .channelName {
   font-size: 0.6rem;
+}
+.search .channelName{
+  font-size: 0.8rem;
 }
 .videoTitle{
   color: white;
@@ -46,13 +69,20 @@
 overflow: hidden;
 -webkit-line-clamp: 2; 
 -webkit-box-orient: vertical;
-font-size: 0.73rem;
+font-size: 0.7rem;
 margin-bottom:0.5em;
+}
+.search .videoTitle{
+  font-size: 1rem;
 }
 .channelName,.viewCountAndDate,.description{
   color: var(--color-light-gray);
   font-size: 0.6rem;
 }
+.search .channelName,.search .viewCountAndDate,.search .description{
+  font-size: 0.7rem;
+}
+
 .description{
   display: -webkit-box;
   overflow: hidden;
@@ -66,5 +96,13 @@ margin-bottom:0.5em;
   }
   .channelName,.viewCountAndDate,.description{
     font-size: 0.75rem;
+  }
+  /* search일 때 */
+  .list.search .thumbnail{
+    flex: 1 1 40%;
+  
+  }
+  .list.search .metadata{
+    flex: 1 1 60%;
   }
 }

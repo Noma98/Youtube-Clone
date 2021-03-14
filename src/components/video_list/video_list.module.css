@@ -10,10 +10,13 @@
   }
 .list{
     flex-direction: column;
-    padding-right: 1.5em;
+    padding-right: 3em;
   }
 @media screen and (max-width:48rem){
     .videos.list{
       width: 100%;
+    }
+    .list{
+      padding-right: 1.5em;
     }
 }

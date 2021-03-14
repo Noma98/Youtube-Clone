@@ -43,7 +43,7 @@ body{
    padding: 0.8rem 1rem;
 }
 .list{
-  padding:1.3em 0 0 1.3em;
+  padding:3em 0 0 3em;
 }
 
 .loadingScreen{
@@ -69,7 +69,7 @@ body{
 }
 @media screen and (max-width:48rem){
   html{
-    font-size: 18px;
+    font-size: 19px;
   }
   .content{
     flex-direction:column;
@@ -84,7 +84,7 @@ body{
 }
 @media screen and (max-width:37.5rem){
   html{
-    font-size: 16px;
+    font-size: 18px;
   }
   .grid{
     padding: 0.8rem 0rem;

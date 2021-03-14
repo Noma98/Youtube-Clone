@@ -92,14 +92,16 @@ function App({ youtube }) {
               <div className={styles.loadingSpinner}></div>
             </div>)
             : (
-              <VideoList
-                channelImg={channelImg}
-                youtube={youtube}
-                videos={videos}
-                onVideoClick={selectVideo}
-                display={grid ? 'grid' : 'list'}
-                description={search}
-              />
+              <>
+                <VideoList
+                  channelImg={channelImg}
+                  youtube={youtube}
+                  videos={videos}
+                  onVideoClick={selectVideo}
+                  display={grid ? 'grid' : 'list'}
+                  search={search}
+                />
+              </>
             )}
         </section>
       </section>

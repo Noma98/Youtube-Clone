@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './video_detail.module.css';
 import * as common from '../../common';
+import ViewInfo from './view_info/view_info';
+import ChannelContainer from './channel_container/channel_container';
+import DescriptionBox from './description_box/description_box';
 
 const VideoDetail = ({ video }) => {
     console.log('datail renderrrr!!');
-    const [open, setOpen] = useState(false);
+
     return (
         <div className={styles.playVideoBox}>
             <div className={styles.iframeBox}>
@@ -15,46 +18,15 @@ const VideoDetail = ({ video }) => {
                     allowFullScreen
                     frameBorder='0'></iframe>
             </div>
-            <div className={styles.container}>
-                <div className={styles.videoContainer}>
-                    {video.tags && <p className={styles.tags}>{common.tagMaker(video.tags)}</p>}
-                    <h2 className={styles.title}>{video.videoTitle}</h2>
-                    <div className={styles.viewInfo}>
-                        <p className={styles.viewCountAndDate}>{
-                            `조회수 ${common.numberWithCommas(video.viewCount)}회 • `
-                        }<span className={styles.date}>{common.dateConverter(video.date)}</span>
-                        </p>
-                        <div className={styles.btnContainer}>
-                            <button className={styles.btnBold}><i className="fas fa-thumbs-up"></i>{common.countConverter(video.viewCount)}</button>
-                            <button className={styles.btnBold}><i className="fas fa-thumbs-down"></i>{common.countConverter(video.dislike)}</button>
-                            <button><i className="fas fa-share"></i>공유</button>
-                            <button><i className="fas fa-folder-plus"></i>저장</button>
-                            <button>•••</button>
-                        </div>
-
-                    </div>
-                    <div className={styles.line}></div>
-                    <div className={styles.channelContainer}>
-                        <div className={styles.channelStart}>
-                            <img src={video.channelImg} alt="Channel" className={styles.channelImg} />
-                            <div className={styles.channelInfo}>
-                                <h4 className={styles.channelName}>{video.channelTitle}</h4>
-                                <div className={styles.subscribers}>구독자 {common.countConverter(video.subscriber)}명</div>
-                            </div>
-                        </div>
-                        <button className={styles.subscribe}>구독</button>
-
-                    </div>
-                    <div className={styles.descriptionBox}>
-                        <pre className={`${styles.description} ${open ? styles.open : styles.close}`}>
-                            {video.description}
-                        </pre>
-                        <button className={styles.moreBtn} onClick={() => setOpen(!open)}>{open ? '간략히' : '더보기'}</button>
-                    </div>
-
-                    <div className={styles.line}></div>
-                    <span className={styles.comments1}>댓글 {common.numberWithCommas(video.comment)}개</span>
-                </div>
+            <div className={styles.videoContainer}>
+                {video.tags && <p className={styles.tags}>{common.tagMaker(video.tags)}</p>}
+                <h2 className={styles.title}>{video.videoTitle}</h2>
+                <ViewInfo video={video} />
+                <div className={styles.line}></div>
+                <ChannelContainer video={video} />
+                <DescriptionBox video={video} />
+                <div className={styles.line}></div>
+                <span className={styles.comments1}>댓글 {common.numberWithCommas(video.comment)}개</span>
             </div>
         </div>
     );

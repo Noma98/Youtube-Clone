@@ -1,0 +1,23 @@
+.viewInfo{
+    display:flex;
+    justify-content: space-between;
+    margin: 0.8em 0;
+}
+.viewCountAndDate,.moreBtn{
+color:var(--color-light-gray);
+}
+.btnContainer{
+    display: flex;
+}
+.btnContainer button{
+    color: var(--color-light-gray);
+    margin-left: 0.8em;
+    font-size: 0.7rem;
+}
+.btnBold{
+    font-weight: bold;
+}
+.btnContainer button i{
+margin-right: 0.4em;
+font-size: 1.2rem;
+}

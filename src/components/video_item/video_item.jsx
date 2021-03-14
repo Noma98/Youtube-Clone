@@ -4,7 +4,7 @@ import * as common from '../../common';
 //video 안에 있는 key인 snippet도 deconstructing이 된다
 
 // let loading = true;
-const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg, description }) => {
+const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg, search }) => {
     const [loading, setLoading] = useState(true);
     const [videoData, setVideoData] = useState({
         videoId: '',
@@ -55,17 +55,23 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
             {loading === true ? (
                 <div></div>)
                 : (
-                    <li className={`${styles.video} ${display === 'list' ? styles.list : styles.grid}`} onClick={() => onVideoClick(videoData)}>
+                    <li className={`${styles.video} ${display === 'list' ? styles.list : styles.grid} ${search ? styles.search : ''}`} onClick={() => onVideoClick(videoData)}>
                         <img src={videoData.videoThumbnail} className={styles.thumbnail} alt='thumbnail'></img>
                         <div className={styles.metadata}>
-                            {channelImg && (<img src={videoData.channelImg} className={styles.channelImg} alt='channel' />)}
+                            {channelImg && !search && (<img src={videoData.channelImg} className={styles.channelImg} alt='channel' />)}
                             <div className={styles.infoBox}>
                                 <p className={styles.videoTitle}>{videoData.videoTitle}</p>
-                                <p className={styles.channelName}>{videoData.channelTitle}</p>
-                                <p className={styles.viewCountAndDate}>{`조회수 ${common.countConverter(videoData.viewCount)}회 • `}
+                                {search && <p className={styles.viewCountAndDate}>{`조회수 ${common.countConverter(videoData.viewCount)}회 • `}
                                     <span className={styles.date}>{common.agoConverter(videoData.date)}</span>
-                                </p>
-                                {description && <div className={styles.description}>{videoData.description}</div>}
+                                </p>}
+                                <div className={styles.channelBox}>
+                                    {search && <img src={videoData.channelImg} className={styles.searchChannelImg} alt='channel' />}
+                                    <p className={styles.channelName}>{videoData.channelTitle}</p>
+                                </div>
+                                {!search && <p className={styles.viewCountAndDate}>{`조회수 ${common.countConverter(videoData.viewCount)}회 • `}
+                                    <span className={styles.date}>{common.agoConverter(videoData.date)}</span>
+                                </p>}
+                                {search && <div className={styles.description}>{videoData.description}</div>}
                             </div>
                         </div>
                     </li>
