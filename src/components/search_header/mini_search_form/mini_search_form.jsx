@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './mini_search_form.module.css';
 
 const MiniSearchForm = ({ onSearch, setState }) => {

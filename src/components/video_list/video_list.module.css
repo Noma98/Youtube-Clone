@@ -12,7 +12,7 @@
     flex-direction: column;
     padding-right: 3em;
   }
-@media screen and (max-width:48rem){
+@media screen and (max-width:960px){
     .videos.list{
       width: 100%;
     }

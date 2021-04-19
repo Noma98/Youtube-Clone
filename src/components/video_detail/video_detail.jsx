@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './video_detail.module.css';
 import * as common from '../../common';
 import ViewInfo from './view_info/view_info';
@@ -22,12 +22,10 @@ const VideoDetail = ({ video }) => {
                 {video.tags && <p className={styles.tags}>{common.tagMaker(video.tags)}</p>}
                 <h2 className={styles.title}>{video.videoTitle}</h2>
                 <ViewInfo video={video} />
-                <div className={styles.line}></div>
                 <ChannelContainer video={video} />
                 <DescriptionBox video={video} />
-                <div className={styles.line}></div>
-                <span className={styles.comments1}>댓글 {common.numberWithCommas(video.comment)}개</span>
             </div>
+            <span className={styles.comments1}>댓글 {common.numberWithCommas(video.comment)}개</span>
         </div>
     );
 };

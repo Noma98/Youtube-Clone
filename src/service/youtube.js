@@ -8,8 +8,9 @@ class Youtube {
             params: {
                 part: 'snippet',
                 chart: 'mostPopular',
-                maxResults: 28,
+                maxResults: 4,
                 fields: 'items(id,snippet(channelId))',
+                regionCode: 'KR',
             },
         });
         return response.data.items;
@@ -34,7 +35,7 @@ class Youtube {
                 part: 'snippet',
                 type: 'video',
                 relatedToVideoId: videoId,
-                maxResults: 6,
+                maxResults: 4,
                 fields: 'items(id.videoId,snippet(channelId))',
             },
         });
@@ -45,7 +46,7 @@ class Youtube {
             params: {
                 part: 'snippet, statistics',
                 id: videoId,
-                fields: 'items(id,snippet(publishedAt,title,description,thumbnails.maxres.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
+                fields: 'items(id,snippet(publishedAt,title,description,thumbnails.maxres.url,thumbnails.medium.url,tags),statistics(viewCount,likeCount,dislikeCount,commentCount))',
             }
         });
         return response.data.items[0];

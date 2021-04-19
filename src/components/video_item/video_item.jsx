@@ -33,7 +33,7 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
                 description: video.snippet.description,
                 videoTitle: video.snippet.title,
                 date: video.snippet.publishedAt,
-                videoThumbnail: video.snippet.thumbnails.maxres.url,
+                videoThumbnail: video.snippet.thumbnails.maxres ? video.snippet.thumbnails.maxres.url : video.snippet.thumbnails.medium.url,
                 viewCount: video.statistics.viewCount,
                 like: video.statistics.likeCount,
                 dislike: video.statistics.dislikeCount,

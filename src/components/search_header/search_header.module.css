@@ -54,7 +54,7 @@
     background-color: var(--color-dark-gray);
 }
 
-@media screen and (max-width:650px){
+@media screen and (max-width:680px){
     .btn{
         margin-left: 0.5em;
     }

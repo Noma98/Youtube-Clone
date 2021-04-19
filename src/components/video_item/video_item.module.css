@@ -5,13 +5,14 @@
 /* grid일 때 */
 .grid{
   flex:1 1 14rem; 
-  max-width: 325px;
+  max-width: 17rem;
   display: flex;
   flex-direction: column;
   padding:0.5em;
 }
 .grid .thumbnail{
   width: 100%;
+  margin-bottom:0.7em;
 }
 .grid .metadata{
   padding: 4px;
@@ -48,10 +49,10 @@
   border-radius: 50%;
 }
 .channelImg{
-  width:36px;
-    height:36px;
+  width:1.8rem;
+    height:1.8rem;
     border-radius: 50%;
-  margin: 0.8em 0.8em 0 0;
+  margin-right: 0.8em;
 }
 .channelBox{
   display: flex;
@@ -90,9 +91,9 @@ margin-bottom:0.5em;
   -webkit-box-orient: vertical;
   font-size: 0.7rem;
 }
-@media screen and (max-width:48rem){
+@media screen and (max-width:960px){
   .videoTitle{
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .channelName,.viewCountAndDate,.description{
     font-size: 0.75rem;

@@ -17,7 +17,6 @@ const SearchForm = ({ onSearch }) => {
                 placeholder='검색'
                 type="text"
                 className={styles.searchInput}
-                autoFocus
             />
             <button className={styles.searchIconBtn} >
                 <img className={styles.searchIcon} src="/images/search.png" alt="search icon" />

@@ -87,21 +87,21 @@ function App({ youtube }) {
           <div className={styles.loadingScreen}>
             <div className={styles.loadingSpinner}></div>
           </div>) : (
-            <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
-              {selectedVideo && (
-                <VideoDetail video={selectedVideo} />
-              )}
+          <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
+            {selectedVideo && (
+              <VideoDetail video={selectedVideo} />
+            )}
 
-              <VideoList
-                channelImg={channelImg}
-                youtube={youtube}
-                videos={videos}
-                onVideoClick={selectVideo}
-                display={grid ? 'grid' : 'list'}
-                search={search}
-              />
-            </section>
-          )}
+            <VideoList
+              channelImg={channelImg}
+              youtube={youtube}
+              videos={videos}
+              onVideoClick={selectVideo}
+              display={grid ? 'grid' : 'list'}
+              search={search}
+            />
+          </section>
+        )}
 
       </section>
 

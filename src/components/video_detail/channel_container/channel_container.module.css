@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     font-size: 0.9rem;
-    margin: 1.3em 0;
+    margin: 1em 0;
 }
 .channelInfo{
     display: flex;
@@ -28,8 +28,8 @@
 
 .channelImg{
     border-radius: 50%;
-    width:2.8rem;
-    height:2.8rem;
+    width:2.5rem;
+    height:2.5rem;
     margin-right: 1em;
 }
 .channelStart{
