@@ -6,8 +6,6 @@ import ChannelContainer from './channel_container/channel_container';
 import DescriptionBox from './description_box/description_box';
 
 const VideoDetail = ({ video }) => {
-    console.log('datail renderrrr!!');
-
     return (
         <div className={styles.playVideoBox}>
             <div className={styles.iframeBox}>

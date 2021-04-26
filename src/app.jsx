@@ -46,6 +46,7 @@ function App({ youtube }) {
   const clickLogo = useCallback(
     () => {
       htmlTitle.textContent = 'Youtube';
+      history.push('/');
       setLoading(true);
       setVideos(defaultVideos);
       setLoading(false);

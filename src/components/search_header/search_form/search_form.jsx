@@ -9,6 +9,7 @@ const SearchForm = ({ onSearch }) => {
         event.preventDefault();
         const input = inputRef.current.value;
         input && onSearch(input);
+        inputRef.current.value = '';
     }
     return (
         <form ref={formRef} className={styles.search} onSubmit={onSubmit}>

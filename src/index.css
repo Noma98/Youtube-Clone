@@ -21,3 +21,13 @@ code {
 body{
   background-color: black;
 }
+
+::-webkit-scrollbar{
+  width: 20px;
+}
+::-webkit-scrollbar-thumb{
+  background-color:gray;
+  border:6px solid #181818;
+  border-radius: 20px;
+  
+}

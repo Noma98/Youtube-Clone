@@ -4,13 +4,13 @@
     top:0;
     display: flex;
     flex-direction: column;
-    padding:3rem 0;
+    padding:2.8rem 0;
     height:100vh;
     background-color:var(--color-dark-gray);
 }
 .btn{
-padding:2em;
-font-size: 0.5rem;
+padding:2.2em 1.7em 2em 1.7em;
+font-size: 0.55rem;
 background-color: transparent;
 color:var(--color-light-gray);
 }

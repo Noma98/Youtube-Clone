@@ -20,7 +20,7 @@ color:var(--color-light-gray);
 }
 .btnBold{
     font-weight: bold;
-    border-bottom: 1.5px solid var(--color-middle-gray);
+    border-bottom: 2.5px solid var(--color-middle-gray);
 }
 .btnContainer button i{
 margin-right: 0.4em;

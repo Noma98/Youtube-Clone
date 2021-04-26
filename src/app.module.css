@@ -10,6 +10,7 @@ html{
   --color-light-gray:#AAAAAA;
   --color-blue:#4195f0;
   --color-red:#cc0001;
+  --color-white:rgb(247, 247, 247);
 }
 *{
   font-family: 'Roboto', sans-serif;

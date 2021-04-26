@@ -8,6 +8,7 @@ const MiniSearchForm = ({ onSearch, setState }) => {
         event.preventDefault();
         const input = inputRef.current.value;
         input && onSearch(input);
+        formRef.current.reset();
     }
     const screenChange = (event) => {
         !event.matches && setState(false);

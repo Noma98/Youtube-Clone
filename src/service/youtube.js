@@ -8,7 +8,7 @@ class Youtube {
             params: {
                 part: 'snippet',
                 chart: 'mostPopular',
-                maxResults: 4,
+                maxResults: 28,
                 fields: 'items(id,snippet(channelId))',
                 regionCode: 'KR',
             },
@@ -35,7 +35,7 @@ class Youtube {
                 part: 'snippet',
                 type: 'video',
                 relatedToVideoId: videoId,
-                maxResults: 4,
+                maxResults: 10,
                 fields: 'items(id.videoId,snippet(channelId))',
             },
         });
