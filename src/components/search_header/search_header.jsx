@@ -2,6 +2,7 @@ import styles from './search_header.module.css';
 import React, { memo, useState, useEffect } from 'react';
 import SearchForm from './search_form/search_form';
 import MiniSearchForm from './mini_search_form/mini_search_form';
+import { Link } from 'react-router-dom';
 
 const SearchHeader = memo(({ onSearch, onLogoClick }) => {
     const [mQuery, setMQuery] = useState(
@@ -32,10 +33,12 @@ const SearchHeader = memo(({ onSearch, onLogoClick }) => {
                         <button className={styles.menuBtn}>
                             <i className="fas fa-bars"></i>
                         </button>
-                        <a className={styles.logo} href='#' onClick={onLogoClick}>
-                            <img className={styles.logoImage} src="/images/logo.png" alt="logo" />
-                            <h4 className={styles.logoTitle}>Youtube</h4>
-                        </a>
+                        <Link to='/'>
+                            <div className={styles.logo} onClick={onLogoClick}>
+                                <img className={styles.logoImage} src="/images/logo.png" alt="logo" />
+                                <h4 className={styles.logoTitle}>Youtube</h4>
+                            </div>
+                        </Link>
                     </div>
                     {mQuery ? (
                         <></>

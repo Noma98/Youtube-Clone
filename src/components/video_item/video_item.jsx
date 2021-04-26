@@ -3,7 +3,6 @@ import styles from './video_item.module.css';
 import * as common from '../../common';
 //video 안에 있는 key인 snippet도 deconstructing이 된다
 
-// let loading = true;
 const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, youtube, channelImg, search }) => {
     const [loading, setLoading] = useState(true);
     const [videoData, setVideoData] = useState({
@@ -24,6 +23,7 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
     });
     //해당 이벤트가 발생하는 곳에서는 굳이 새로 함수를 만들어서 전달해 주지 않고 바로 onClick={()=>{함수(인자)}}로 작성해도 됨
     useEffect(() => {
+        console.log('item render!!!!!!');
         snippet && youtube.getAllData(video.id, snippet.channelId).then(result => {
             const video = result[0];
             const channel = result[1];
@@ -46,10 +46,10 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
             setLoading(false);
         });
 
-    }, [video]);//여기 warning에서는 videoData나 youtube 넣으라는데 videoData 넣으면 무한루프 생김...
+    }, [video]);
 
-    console.log('item render!!!!');
     return (
+
         <>
             {loading === true ? (
                 <div></div>)

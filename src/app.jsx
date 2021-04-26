@@ -1,110 +1,101 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import SearchHeader from './components/search_header/search_header';
-import VideoList from './components/video_list/video_list';
 import styles from './app.module.css';
-import VideoDetail from './components/video_detail/video_detail';
-import Sidebar from './components/sidebar/sidebar';
+import { Route, Switch, useHistory } from 'react-router';
+import Home from './pages/home';
+import Search from './pages/search';
+import Watch from './pages/watch';
+import SearchHeader from './components/search_header/search_header';
 
-// let loading = true;
-let grid = true;
-let channelImg = true;
-let search = false;
 let selectedVideo = null;
+let defaultVideos = null;
 
 function App({ youtube }) {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
-  //널체크 해야하는 곳은 초기값을 {},[]이런거 말고 null로 명시하자.
+  const history = useHistory();
+  const htmlTitle = document.querySelector('title');
 
   const selectVideo = useCallback(
     (video) => {
+      history.push(`/watch?v=${video.videoId}`);
+      htmlTitle.textContent = `(8) ${video.videoTitle}`;
       setLoading(true);
-      search = false;
-      grid = false;
-      channelImg = false;
-      // loading = true;
       selectedVideo = video;
-
-      //항상 들어오는 데이터의 형태가 오브젝트인지 뭔지 확인하고 쓰자. 오브젝트이면 {}를 쓸 필요가 없기때문에 미리 알아야 에러를 피할 수 있음
-      youtube //
+      youtube
         .getRcmData(video.videoId)
         .then(videos => {
           setVideos(videos);
           setLoading(false);
         });
-    }, [youtube]);
+    }, [youtube, history]);
 
   const handleSearch = useCallback(
     query => {
+      htmlTitle.textContent = `(8) ${query} - Youtube`;
+      history.push(`/results?search_query=${query}`);
       setLoading(true);
-      search = true;
-      channelImg = true;
-      grid = false;
-      selectedVideo = null;
       youtube
         .getSearchResult(query)
         .then(videos => {
           setVideos(videos);
           setLoading(false);
         });
-    }, [youtube]
+    }, [youtube, history]
   );
 
   const clickLogo = useCallback(
     () => {
+      htmlTitle.textContent = 'Youtube';
       setLoading(true);
-      selectedVideo = null;
-      channelImg = true;
-      grid = true;
-      search = false;
-      // loading = true;
-      youtube
-        .getMostPopular()
-        .then(videos => {
-          // loading = false;
-          setVideos(videos);
-          setLoading(false);
-        });
-    }, [youtube]);
+      setVideos(defaultVideos);
+      setLoading(false);
+    }, [defaultVideos, history]);
+
   useEffect(() => {
     setLoading(true);
     youtube
       .getMostPopular()
       .then(videos => {
-        // loading = false;
         setVideos(videos);
         setLoading(false);
+        defaultVideos = videos;
       });
   }, [youtube]);
 
-  console.log('app render🌟')
   return (
     <div className={styles.app}>
       <SearchHeader onSearch={handleSearch} onLogoClick={clickLogo} />
       <section className={styles.sidebarAndContent}>
-        {selectedVideo === null ? <Sidebar onHomeClick={clickLogo} /> : <></>}
-        {loading ? (
-          <div className={styles.loadingScreen}>
-            <div className={styles.loadingSpinner}></div>
-          </div>) : (
-          <section className={`${grid ? styles.grid : styles.list} ${styles.content} ${search ? styles.search : ''}`}>
-            {selectedVideo && (
-              <VideoDetail video={selectedVideo} />
-            )}
-
-            <VideoList
-              channelImg={channelImg}
+        <Switch>
+          <Route path="/" exact>
+            <Home
+              clickLogo={clickLogo}
               youtube={youtube}
               videos={videos}
-              onVideoClick={selectVideo}
-              display={grid ? 'grid' : 'list'}
-              search={search}
+              selectVideo={selectVideo}
+              loading={loading}
             />
-          </section>
-        )}
-
+          </Route>
+          <Route path="/results">
+            <Search
+              clickLogo={clickLogo}
+              youtube={youtube}
+              videos={videos}
+              selectVideo={selectVideo}
+              loading={loading}
+            />
+          </Route>
+          <Route path="/watch">
+            <Watch
+              youtube={youtube}
+              videos={videos}
+              selectVideo={selectVideo}
+              selectedVideo={selectedVideo}
+              loading={loading}
+            />
+          </Route>
+        </Switch>
       </section>
-
     </div>);
 }
 
