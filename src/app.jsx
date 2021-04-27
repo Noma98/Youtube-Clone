@@ -8,6 +8,8 @@ import SearchHeader from './components/search_header/search_header';
 
 let selectedVideo = JSON.parse(sessionStorage.getItem('selectedVideo')) || null;
 let defaultVideos = JSON.parse(sessionStorage.getItem('defaultVideos')) || null;
+const htmlTitle = document.querySelector('title');
+htmlTitle.textContent = sessionStorage.getItem('htmlTitle') || 'Youtube';
 
 function App({ youtube }) {
   const [videos, setVideos] = useState(() =>
@@ -15,7 +17,6 @@ function App({ youtube }) {
   );
   const [loading, setLoading] = useState(true);
   const history = useHistory();
-  const htmlTitle = document.querySelector('title');
 
   const selectVideo = useCallback(
     (video) => {
@@ -70,6 +71,7 @@ function App({ youtube }) {
   }, [youtube]);
 
   useEffect(() => {
+    sessionStorage.setItem('htmlTitle', htmlTitle.textContent);
     sessionStorage.setItem('videos', JSON.stringify(videos));
     sessionStorage.setItem('selectedVideo', JSON.stringify(selectedVideo));
     sessionStorage.setItem('defaultVideos', JSON.stringify(defaultVideos));
