@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './sidebar.module.css'
 
-const Sidebar = ({ onHomeClick }) => {
+const Sidebar = memo(({ onHomeClick }) => {
     return (
         <div className={styles.sidebar}>
             <button className={styles.btn} onClick={onHomeClick}>
@@ -26,6 +26,6 @@ const Sidebar = ({ onHomeClick }) => {
             </button>
         </div>
     );
-};
+});
 
 export default Sidebar;

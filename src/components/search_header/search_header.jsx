@@ -4,7 +4,7 @@ import SearchForm from './search_form/search_form';
 import MiniSearchForm from './mini_search_form/mini_search_form';
 import { Link } from 'react-router-dom';
 
-const SearchHeader = memo(({ onSearch, onLogoClick }) => {
+const SearchHeader = ({ onSearch, onLogoClick }) => {
     const [mQuery, setMQuery] = useState(
         window.innerWidth < 650 ? true : false,
     );
@@ -62,6 +62,6 @@ const SearchHeader = memo(({ onSearch, onLogoClick }) => {
 
 
     );
-});
+};
 
 export default SearchHeader;
