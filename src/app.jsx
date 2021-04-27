@@ -6,11 +6,13 @@ import Search from './pages/search';
 import Watch from './pages/watch';
 import SearchHeader from './components/search_header/search_header';
 
-let selectedVideo = null;
-let defaultVideos = null;
+let selectedVideo = JSON.parse(sessionStorage.getItem('selectedVideo')) || null;
+let defaultVideos = JSON.parse(sessionStorage.getItem('defaultVideos')) || null;
 
 function App({ youtube }) {
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState(() =>
+    JSON.parse(sessionStorage.getItem('videos')) || null
+  );
   const [loading, setLoading] = useState(true);
   const history = useHistory();
   const htmlTitle = document.querySelector('title');
@@ -34,6 +36,7 @@ function App({ youtube }) {
       htmlTitle.textContent = `(8) ${query} - Youtube`;
       history.push(`/results?search_query=${query}`);
       setLoading(true);
+      selectedVideo = null;
       youtube
         .getSearchResult(query)
         .then(videos => {
@@ -53,15 +56,24 @@ function App({ youtube }) {
     }, [defaultVideos, history]);
 
   useEffect(() => {
-    setLoading(true);
-    youtube
-      .getMostPopular()
-      .then(videos => {
-        setVideos(videos);
-        setLoading(false);
-        defaultVideos = videos;
-      });
+    if (!defaultVideos) {
+      youtube
+        .getMostPopular()
+        .then(videos => {
+          setVideos(videos);
+          setLoading(false);
+          defaultVideos = videos;
+        });
+    } else {
+      setLoading(false);
+    }
   }, [youtube]);
+
+  useEffect(() => {
+    sessionStorage.setItem('videos', JSON.stringify(videos));
+    sessionStorage.setItem('selectedVideo', JSON.stringify(selectedVideo));
+    sessionStorage.setItem('defaultVideos', JSON.stringify(defaultVideos));
+  }, [videos, selectedVideo]);
 
   return (
     <div className={styles.app}>

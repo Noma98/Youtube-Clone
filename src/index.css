@@ -23,11 +23,11 @@ body{
 }
 
 ::-webkit-scrollbar{
-  width: 20px;
+  width: 1rem;
 }
 ::-webkit-scrollbar-thumb{
   background-color:gray;
-  border:6px solid #181818;
-  border-radius: 20px;
+  border:0.3rem solid #181818;
+  border-radius: 1rem;
   
 }

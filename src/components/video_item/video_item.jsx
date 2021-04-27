@@ -23,7 +23,6 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
     });
     //해당 이벤트가 발생하는 곳에서는 굳이 새로 함수를 만들어서 전달해 주지 않고 바로 onClick={()=>{함수(인자)}}로 작성해도 됨
     useEffect(() => {
-        console.log('item render!!!!!!');
         snippet && youtube.getAllData(video.id, snippet.channelId).then(result => {
             const video = result[0];
             const channel = result[1];
@@ -46,7 +45,7 @@ const VideoItem = memo(({ video, video: { snippet }, onVideoClick, display, yout
             setLoading(false);
         });
 
-    }, [video]);
+    }, [video, youtube]);
 
     return (
 

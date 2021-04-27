@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 const httpClient = axios.create({
   baseURL: 'https://www.googleapis.com/youtube/v3',
-  params: { key: process.env.REACT_APP_YOUTUBE_API_KEY1 },
+  params: { key: process.env.REACT_APP_YOUTUBE_API_KEY2 },
 });
 const youtube = new Youtube(httpClient);
 
