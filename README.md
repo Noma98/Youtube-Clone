@@ -79,9 +79,9 @@ ReactDOM.render(
 );
 
 ```
-📍 `axios` 라이브러리를 사용해 `fetch` API보다 가독성 좋게 서버로 부터 데이터를 받아왔습니다. 
+📍 `axios` 라이브러리를 사용해 `fetch` API보다 가독성 좋게 서버로부터 데이터를 받아왔습니다. 
 
-📍 API 할당량을 절약하기 위해 꼭 필요한 데이터만을 `fields`를 이용해 파라미터로 전달하였습니다.
+📍 API 할당량을 절약하기 위해 꼭 필요한 데이터만 `fields`를 이용해 파라미터로 전달하였습니다.
 ```jsx
 // src/service/youtube.js
 class Youtube {
@@ -235,6 +235,7 @@ export default Sidebar;
 
 /* /index.html 200
 ```
+
 ## **About UI**
 ### **✅ matchMedia**
 📍 `matchMedia`를 이용해서 화면 크기에 적절한 검색창을 제공했습니다.  
@@ -370,6 +371,7 @@ function App({ youtube }) {
 }
 export default App;
 ``` 
+
 # **⏳ Future scope**
 
 - Firebase 로그인 기능 추가하기
