@@ -1,6 +1,4 @@
 
-`©merry`
-
 <h1 align="center"><b>Youtube Clone</b></h1>
 <p align="center">
 <img src="https://img.shields.io/badge/made by-merry-red">
@@ -8,9 +6,10 @@
 <img src="https://img.shields.io/badge/React-17.0.2-blue">
 <img src="https://img.shields.io/badge/Open%20Source-%F0%9F%A7%A1-brightgreen">
 </p>
-
-<img width="100%" src="readme/thumbnail.png">
-<h2 align="center"><a href="https://merrytube.netlify.app/"><b>Live Demo</b></a></h2>  
+  
+<img width="100%" alt="thumbnail" src="https://user-images.githubusercontent.com/69305320/116347815-e1c66a80-a827-11eb-9e32-6a7ccb82031c.PNG">
+  
+<h2 align="center"><a href="https://merrytube.netlify.app/"><b>Live Demo</b></a></h2>    
 
 
 # **📝 Description**
@@ -20,11 +19,13 @@ Youtube에서 제공하는 Data API를 이용한 클론 코딩 프로젝트�
 ### **1. 비디오를 클릭해보세요!**
 📍 썸네일 클릭시 해당 영상을 재생할 수 있는 페이지가 뜨고, 관련된 영상들을 추천해 줍니다.
 
-<img src="readme/playVideo.gif">
+![playVideo](https://user-images.githubusercontent.com/69305320/116347802-decb7a00-a827-11eb-80b0-39e2927d667c.gif)
 
 📍 하단의 `더보기`를 클릭하면 영상의 자세한 정보를 확인할 수 있습니다.
 
-<img src="readme/more.gif">
+
+![more](https://user-images.githubusercontent.com/69305320/116347797-dd9a4d00-a827-11eb-9108-62f82ba34ad8.gif)
+
 
 ### **2. 보고싶은 영상을 검색창에 입력하세요.**
 
@@ -32,11 +33,12 @@ Youtube에서 제공하는 Data API를 이용한 클론 코딩 프로젝트�
 
 📍 검색어를 이용해 타이틀과 URL 주소가 변경됩니다.
 
-<img src="readme/search.gif">
 
+![search](https://user-images.githubusercontent.com/69305320/116347811-e0953d80-a827-11eb-9722-58105d60b802.gif)
 ### **3. 사이드바에 있는 '홈'버튼으로 화면 이동이 가능합니다.**  
 
-<img src="readme/sideHome.gif">
+
+![sideHome](https://user-images.githubusercontent.com/69305320/116347814-e12dd400-a827-11eb-9e13-1f866f4d6847.gif)
 
 > ❗ 참고  
 >
@@ -104,17 +106,15 @@ class Youtube {
 export default Youtube;
 ```
 ### **✅ React Router & useHistory**
-📍 React Router와 `useHistory`를 사용해 상황에 따라 적절한 URL과 title로 변경되도록 하였습니다.  
- <div style="display:flex">
-    <div style="padding-right:8px">
-        <p>▽ 검색 시</p>  
-        <img  src="readme/searchURL.gif">
-    </div>
-    <div>
-        <p>▽ 비디오 클릭 시</p>
-        <img  src="readme/watchURL.gif">
-    </div>
- </div>
+📍 React Router와 `useHistory`를 사용해 상황에 따라 적절한 URL과 title로 변경되도록 하였습니다. 
+
+▽ 검색 시
+
+![searchURL](https://user-images.githubusercontent.com/69305320/116347812-e12dd400-a827-11eb-9f5f-ad295b332fa0.gif)
+
+▽ 비디오 클릭 시
+
+![watchURL](https://user-images.githubusercontent.com/69305320/116347816-e25f0100-a827-11eb-8eae-333adc04be07.gif)
 
 ```jsx
 // src/index.js
@@ -240,7 +240,8 @@ export default Sidebar;
 📍 `matchMedia`를 이용해서 화면 크기에 적절한 검색창을 제공했습니다.  
 
 (➕ `useEffect`의 `return`구문에 `removeEventListener`을 사용함으로써 컴포넌트가 언마운트된 이후로 불필요하게 이벤트를 감지하지 않도록 하였습니다.)
-<img src="readme/responsibleSearch.gif">
+
+![responsibleSearch](https://user-images.githubusercontent.com/69305320/116347809-dffca700-a827-11eb-9ebe-16055afe0552.gif)
 
 ```jsx
 // src/component/search_header/search_header.jsx
@@ -304,17 +305,18 @@ export default SearchHeader;
 ```
 📍 위와 동일한 방법으로 화면 크기가 작아졌을 경우 조회수 표시 단위를 변경하고 업로드 일자를 없애 공간을 확보했습니다.
 
-<img src="readme/responsiblePlayScreen.gif">
+![responsiblePlayScreen](https://user-images.githubusercontent.com/69305320/116347808-dffca700-a827-11eb-8500-9ef816d11911.gif)
   
 ### **✅ Responsible UI**
 📍 `flex`를 사용해 화면 크기에 따라 영상을 배치하였고, `rem`과 `em`단위로 작성해 `media query`에 따라 자동으로 크기(폰트, 여백, 요소 크기)가 조절되도록 만들었습니다.  
 
-<img src="readme/responsibleHome.gif">
+
+![responsibleHome](https://user-images.githubusercontent.com/69305320/116347807-df641080-a827-11eb-8c0b-02f2e4cd37b4.gif)
 
 ### **✅ Loading Spinner**
 📍 서버에서 데이터를 받아오는 동안 로딩 중임을 사용자가 인지할 수 있도록 로딩 스피너를 구현했습니다.
 
-<img src="readme/playVideo.gif">
+![playVideo](https://user-images.githubusercontent.com/69305320/116347802-decb7a00-a827-11eb-80b0-39e2927d667c.gif)
 
 ```jsx
 // src/app.jsx
