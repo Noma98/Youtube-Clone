@@ -9,13 +9,19 @@
   
 <img width="100%" alt="thumbnail" src="https://user-images.githubusercontent.com/69305320/116347815-e1c66a80-a827-11eb-9e32-6a7ccb82031c.PNG">
   
-<h2 align="center"><a href="https://merrytube.netlify.app/"><b>Live Demo</b></a></h2>    
+<h2 align="center"><a href="https://merrytube.netlify.app/"><b> Live Demo (Click Here!🌟) </b></a></h2>  
 
+## **📝 Description**
+Youtube에서 제공하는 Data API를 이용한 클론 코딩 프로젝트로, Youtube의 필수 기능들(검색, 인기 영상, 동영상 재생)을 구현했습니다.
 
-# **📝 Description**
+1. Skills: React, React Router, PostCSS
+2. Use: Postman, Youtube data APIs, axios
+3. Deploy: Netlify
+4. Period
+    - 3/3 ~ 14 1차 배포
+    - 4/19 ~ 27 (버그 수정, UI 변경, 렌더링 최소화, React Router 도입)
 
-Youtube에서 제공하는 Data API를 이용한 클론 코딩 프로젝트로, Youtube의 필수 기능들(검색, 인기 영상, 동영상 재생)을 구현했습니다.  
-## **How to use ❓**
+## **How to use ❓**
 ### **1. 비디오를 클릭해보세요!**
 📍 썸네일 클릭시 해당 영상을 재생할 수 있는 페이지가 뜨고, 관련된 영상들을 추천해 줍니다.
 
@@ -46,9 +52,6 @@ Youtube에서 제공하는 Data API를 이용한 클론 코딩 프로젝트�
 
   
 # **🔍 About the project**
-
-### **💻 Development Environment** 
-: React.js, React Router, PostCSS, Postman, Youtube API, VScode, Github
 
 > ❗ 아래 코드들은 설명을 위해 필요한 부분만 일부 가져온 것으로, 분량상 나머지는 `//...`으로 생략하겠습니다.
 
